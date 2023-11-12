@@ -13,7 +13,6 @@ class BinanceKeyParser:
         api_secret = keys.get('api_secret')
 
         if api_key and api_secret:
-            print(f'API Key: {api_key}')
-            print(f'API Secret: {api_secret}')
+            return api_key, api_secret
         else:
-            print('Chaves inválidas ou ausentes no arquivo JSON.')
+            raise TypeError("Chaves inválidas ou ausentes no arquivo JSON.")

@@ -2,18 +2,18 @@ import json
 
 
 class BinanceKeyParser:
-    def __init__(self, file_path='../../binance.json'):
+    def __init__(self, file_path='binance.json'):
         self.file_path = file_path
 
+    def read_keys(self):
+        with open(self.file_path, 'r') as file:
+            keys = json.load(file)
 
-file_path = '../../binance.json'
+        api_key = keys.get('api_key')
+        api_secret = keys.get('api_secret')
 
-with open(file_path, 'r') as file:
-    binance_keys = file.readlines()
-
-    if len(binance_keys) == 2:
-        string1 = binance_keys[0].strip()
-        string2 = binance_keys[1].strip()
-
-        print(f'Key: {string1}')
-        print(f'Secret: {string2}')
+        if api_key and api_secret:
+            print(f'API Key: {api_key}')
+            print(f'API Secret: {api_secret}')
+        else:
+            print('Chaves inválidas ou ausentes no arquivo JSON.')
